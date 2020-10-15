@@ -133,6 +133,9 @@ dmypy.json
 
 # dataset
 dataset/raw/
+dataset/pre_data/
+dataset/train_data/
 
 # models
 models/
+finetune_model/
