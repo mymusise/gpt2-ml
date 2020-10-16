@@ -102,7 +102,7 @@ flags.DEFINE_integer(
 
 
 def main(_):
-    with open('run_main_now.txt', 'w') as f:
+    with open('run_main_now.log', 'w') as f:
         f.write('start main\n')
     tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -136,7 +136,7 @@ def main(_):
             num_shards=FLAGS.num_tpu_cores,
             per_host_input_for_training=is_per_host))
 
-    with open('run_main_now.txt', 'w') as f:
+    with open('run_main_now.log', 'w') as f:
         f.write('buildding model\n')
 
     model_fn = model_fn_builder(news_config, init_checkpoint=FLAGS.init_checkpoint,
@@ -148,7 +148,7 @@ def main(_):
 
     # # If TPU is not available, this will fall back to normal Estimator on CPU
     # # or GPU.
-    with open('run_main_now.txt', 'w') as f:
+    with open('run_main_now.log', 'w') as f:
         f.write('buildding estimator\n')
 
     estimator = tf.contrib.tpu.TPUEstimator(
@@ -163,7 +163,7 @@ def main(_):
     tf.logging.info("***** Running training *****")
     tf.logging.info("  Batch size = %d", FLAGS.train_batch_size)
 
-    with open('run_main_now.txt', 'w') as f:
+    with open('run_main_now.log', 'w') as f:
         f.write('buildding train_input\n')
 
     train_input_fn = input_fn_builder(
@@ -171,7 +171,7 @@ def main(_):
         seq_length=FLAGS.max_seq_length,
         is_training=True)
 
-    with open('run_main_now.txt', 'w') as f:
+    with open('run_main_now.log', 'w') as f:
         f.write('Start trainning...\n')
 
     print("Start trainning.............................................")
