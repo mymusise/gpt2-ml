@@ -103,7 +103,7 @@ flags.DEFINE_integer(
 
 def main(_):
     with open('run_main_now.txt', 'w') as f:
-        f.write('start main')
+        f.write('start main\n')
     tf.logging.set_verbosity(tf.logging.INFO)
 
     news_config = GroverConfig.from_json_file(FLAGS.config_file)
@@ -137,7 +137,7 @@ def main(_):
             per_host_input_for_training=is_per_host))
 
     with open('run_main_now.txt', 'w') as f:
-        f.write('buildding model')
+        f.write('buildding model\n')
 
     model_fn = model_fn_builder(news_config, init_checkpoint=FLAGS.init_checkpoint,
                                 learning_rate=FLAGS.learning_rate,
@@ -149,7 +149,7 @@ def main(_):
     # # If TPU is not available, this will fall back to normal Estimator on CPU
     # # or GPU.
     with open('run_main_now.txt', 'w') as f:
-        f.write('buildding estimator')
+        f.write('buildding estimator\n')
 
     estimator = tf.contrib.tpu.TPUEstimator(
         use_tpu=FLAGS.use_tpu,
@@ -164,7 +164,7 @@ def main(_):
     tf.logging.info("  Batch size = %d", FLAGS.train_batch_size)
 
     with open('run_main_now.txt', 'w') as f:
-        f.write('buildding train_input')
+        f.write('buildding train_input\n')
 
     train_input_fn = input_fn_builder(
         input_files=input_files,
@@ -172,7 +172,7 @@ def main(_):
         is_training=True)
 
     with open('run_main_now.txt', 'w') as f:
-        f.write('Start trainning...')
+        f.write('Start trainning...\n')
 
     print("Start trainning.............................................")
     estimator.train(input_fn=train_input_fn, max_steps=FLAGS.num_train_steps)
