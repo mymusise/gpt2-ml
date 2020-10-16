@@ -4,7 +4,7 @@ import argparse
 import json
 import re
 
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 import numpy as np
 
 from train.modeling import GroverModel, GroverConfig, sample
@@ -197,5 +197,5 @@ with tf.Session(config=tf_config, graph=tf.Graph()) as sess:
 
             l = re.findall('.{1,70}', gens[0].replace('[UNK]', '').replace('##', ''))
             print("\n".join(l))
-        print('Next try:⬇️')
+        print('Next try:')
         text = input()

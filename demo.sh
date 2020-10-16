@@ -1,0 +1,1 @@
+PYTHONPATH=$(pwd) python3 scripts/demo.py -ckpt_fn models/mega/model.ckpt-220000 -min_len 30 -samples 2
