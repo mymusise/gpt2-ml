@@ -136,6 +136,9 @@ def main(_):
             num_shards=FLAGS.num_tpu_cores,
             per_host_input_for_training=is_per_host))
 
+    with open('run_main_now.txt', 'w') as f:
+        f.write('buildding model')
+
     model_fn = model_fn_builder(news_config, init_checkpoint=FLAGS.init_checkpoint,
                                 learning_rate=FLAGS.learning_rate,
                                 num_train_steps=FLAGS.num_train_steps,
@@ -145,6 +148,9 @@ def main(_):
 
     # # If TPU is not available, this will fall back to normal Estimator on CPU
     # # or GPU.
+    with open('run_main_now.txt', 'w') as f:
+        f.write('buildding estimator')
+
     estimator = tf.contrib.tpu.TPUEstimator(
         use_tpu=FLAGS.use_tpu,
         model_fn=model_fn,
@@ -156,10 +162,17 @@ def main(_):
 
     tf.logging.info("***** Running training *****")
     tf.logging.info("  Batch size = %d", FLAGS.train_batch_size)
+
+    with open('run_main_now.txt', 'w') as f:
+        f.write('buildding train_input')
+
     train_input_fn = input_fn_builder(
         input_files=input_files,
         seq_length=FLAGS.max_seq_length,
         is_training=True)
+
+    with open('run_main_now.txt', 'w') as f:
+        f.write('Start trainning...')
 
     print("Start trainning.............................................")
     estimator.train(input_fn=train_input_fn, max_steps=FLAGS.num_train_steps)
