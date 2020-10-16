@@ -102,6 +102,8 @@ flags.DEFINE_integer(
 
 
 def main(_):
+    with open('run_main_now.txt', 'w') as f:
+        f.write('start main')
     tf.logging.set_verbosity(tf.logging.INFO)
 
     news_config = GroverConfig.from_json_file(FLAGS.config_file)
