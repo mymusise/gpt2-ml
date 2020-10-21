@@ -1,0 +1,21 @@
+version: '3'
+services:
+  drun:
+    build:
+      context: ./dockerfiles
+      dockerfile: drun.Dockerfile
+    network_mode: "host"
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    ipc: host
+    shm_size: 16G
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - $HOME/dockerx:/dockerx
+      - /data/gpt2-ml-finetune:/data/gpt2-ml-finetune
+      - /data/gpt2-ml-model:/data/gpt2-ml-model
+      - $PWD:/gpt2-ml/
