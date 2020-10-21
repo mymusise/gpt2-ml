@@ -59,17 +59,17 @@ flags.DEFINE_integer("train_batch_size", 1, "Total batch size for training.")
 
 flags.DEFINE_float("learning_rate", 5e-5, "The initial learning rate for adafactor.")
 
-flags.DEFINE_integer("num_train_steps", 20, "Number of training steps.")
+flags.DEFINE_integer("num_train_steps", 110000, "Number of training steps.")
 
-flags.DEFINE_integer("num_warmup_steps", 10, "Number of warmup steps.")
+flags.DEFINE_integer("num_warmup_steps", 500, "Number of warmup steps.")
 
-flags.DEFINE_integer("save_checkpoints_steps", 16,
+flags.DEFINE_integer("save_checkpoints_steps", 1600,
                      "How often to save the model checkpoint.")
 
-flags.DEFINE_integer("iterations_per_loop", 16,
+flags.DEFINE_integer("iterations_per_loop", 1600,
                      "How many steps to make in each estimator call.")
 
-flags.DEFINE_integer("max_eval_steps", 20, "Maximum number of eval steps.")
+flags.DEFINE_integer("max_eval_steps", 100, "Maximum number of eval steps.")
 
 flags.DEFINE_bool("use_tpu", False, "Whether to use TPU or GPU/CPU.")
 
